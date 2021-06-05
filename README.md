@@ -16,7 +16,10 @@ I don't actually remember. :smiley: I have been working my way through an AWS ce
 
 ### Create the Serverless RDS Database
 
-OK, let's create a free serverless database. 
+OK, let's create a free serverless database. Login to your AWS Management Console and choose All Services and then RDS.
+
+![RDS](https://user-images.githubusercontent.com/9034190/120907486-e43e9000-c62f-11eb-9c8f-02e02deb8c63.png)
+
 
 ### Create the Serverless Lambda Function
 ## Thank you
