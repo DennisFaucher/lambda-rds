@@ -12,7 +12,7 @@ I don't actually remember. :smiley: I have been working my way through an AWS ce
 
 ### Parts List
 
-* An AWS Account
+* An AWS Account. You can create one [here](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html)
 
 ### Create the Serverless RDS Database
 
