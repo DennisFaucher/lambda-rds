@@ -29,6 +29,14 @@ Choose the Create Database button
 
 ![Create Database](https://user-images.githubusercontent.com/9034190/120907637-25836f80-c631-11eb-9669-7c7abb358bc7.png)
 
+Select Easy Create, MySql, Free Tier
+
+![Create DB 1](https://user-images.githubusercontent.com/9034190/120907732-e6095300-c631-11eb-855e-ff8aa75741a8.png)
+
+Give your database instance a name, create an admin password and select the Create database button
+
+![Create DB 2](https://user-images.githubusercontent.com/9034190/120907754-1d77ff80-c632-11eb-9506-d19b09996696.png)
+
 
 
 ### Create the Serverless Lambda Function
