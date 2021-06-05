@@ -10,7 +10,13 @@ I don't actually remember. :smiley: I have been working my way through an AWS ce
 
 ![Tools](https://user-images.githubusercontent.com/9034190/120907232-dbe55580-c62d-11eb-9a65-27f4d2707c71.png)
 
+### Parts List
+
+* An AWS Account
 
 ### Create the Serverless RDS Database
+
+OK, let's create a free serverless database. 
+
 ### Create the Serverless Lambda Function
 ## Thank you
