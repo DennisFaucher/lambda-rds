@@ -25,7 +25,7 @@ OK, let's create a free serverless database. Login to your AWS Management [Conso
 
 ![RDS](https://user-images.githubusercontent.com/9034190/120907486-e43e9000-c62f-11eb-9c8f-02e02deb8c63.png)
 
-Choose the Create Database button 
+* Choose the Create Database button 
 
 ![Create Database](https://user-images.githubusercontent.com/9034190/120907637-25836f80-c631-11eb-9669-7c7abb358bc7.png)
 
@@ -33,9 +33,22 @@ Select Easy Create, MySql, Free Tier
 
 ![Create DB 1](https://user-images.githubusercontent.com/9034190/120907732-e6095300-c631-11eb-855e-ff8aa75741a8.png)
 
-Give your database instance a name, create an admin password and select the Create database button
+* Give your database instance a name, create an admin password and select the Create database button
 
 ![Create DB 2](https://user-images.githubusercontent.com/9034190/120907754-1d77ff80-c632-11eb-9506-d19b09996696.png)
+
+You will be redirected to the Databases screen and will see that your database is being created. This will take a few minutes
+
+![DB Creating](https://user-images.githubusercontent.com/9034190/120907803-a131ec00-c632-11eb-97cb-e9c6d1271d2e.png)
+
+Make sure you can access your new database server
+
+* Use a Security Group that has port 3306 open for your database instance. AWS Security Groups are a _huge_ topic that I will not explain here. Please see this page for a tutorial on AWS Security Groups.
+* Give the database instance a public IP address. This is not recommended, but made accessing the database instance from non-AWS machines (my laptop) much easier. To give the database instance a public IP address, select the radio button for your database in the database list, select the Modify button, scroll down to the "Connectivity" section, expand "Additonal configuration", choose "Publicly accessible" and then select the "Continue" button.
+
+Now, when you select the name of your database instance in the Databases screen, you will be shown the database instance FQDN and port
+
+![DB Public DNS](https://user-images.githubusercontent.com/9034190/120908115-346c2100-c635-11eb-8a06-0c471fd4473a.png)
 
 
 
