@@ -21,6 +21,8 @@ I don't actually remember. :smiley: I have been working my way through an AWS ce
 
 ### Create the Serverless RDS Database
 
+#### Create the Database Instance
+
 OK, let's create a free serverless database. Login to your AWS Management [Console](https://aws.amazon.com/console/) and choose All Services and then Database > RDS.
 
 ![RDS](https://user-images.githubusercontent.com/9034190/120907486-e43e9000-c62f-11eb-9c8f-02e02deb8c63.png)
@@ -29,7 +31,7 @@ OK, let's create a free serverless database. Login to your AWS Management [Conso
 
 ![Create Database](https://user-images.githubusercontent.com/9034190/120907637-25836f80-c631-11eb-9669-7c7abb358bc7.png)
 
-Select Easy Create, MySql, Free Tier
+* Select Easy Create, MySql, Free Tier
 
 ![Create DB 1](https://user-images.githubusercontent.com/9034190/120907732-e6095300-c631-11eb-855e-ff8aa75741a8.png)
 
@@ -49,6 +51,13 @@ Make sure you can access your new database server
 Now, when you select the name of your database instance in the Databases screen, you will be shown the database instance FQDN and port
 
 ![DB Public DNS](https://user-images.githubusercontent.com/9034190/120908115-346c2100-c635-11eb-8a06-0c471fd4473a.png)
+
+#### Populate the Database Instance
+
+For my testing I grabbed a [TMDB movie CSV](https://www.kaggle.com/tmdb/tmdb-movie-metadata) from Kaggle specifically, the "tmdb_5000_movies.csv" file. You can use any comma separated or tab separated file to pupolate your database (You need a free Kaggle account in order to download files).
+
+![tmdb](https://user-images.githubusercontent.com/9034190/120908357-7a29e900-c637-11eb-8256-f0f9050f08bd.png)
+
 
 
 
