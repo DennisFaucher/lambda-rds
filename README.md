@@ -121,9 +121,10 @@ describe imdb;
 | vote_average         | decimal(2,1) | YES  |     | NULL    |       |
 | vote_count           | int          | YES  |     | NULL    |       |
 +----------------------+--------------+------+-----+---------+-------+
-describe
 ````
-
+Two issues I want to point out here:
+1) I should have named my table tmdb not imdb but I didn't :smile:
+2) A few of these columns should actually be defined as JSON not varchar(100), but my import would not work when the columns were defined as JSON. Column type can be changed after import.
 
 ### Create the Serverless Lambda Function
 ## Thank you
