@@ -88,6 +88,38 @@ show databases;
 +--------------------+
 ````
 
+* Create your database table
+````sql
+Use dennis;
+Create table imdb (Budget int(10), genres varchar(100), homepage varchar(100),	id int(10), keywords varchar(100), original_language varchar(2), original_title varchar(100), overview varchar(100), popularity decimal(9,6), production_companies varchar(100), production_countries varchar(100),  release_date date, revenue int(10), runtime int(3),	spoken_languages  varchar(100), status varchar(100), tagline varchar(100), title varchar(100), vote_average decimal(2,1), vote_count int(10));
+describe imdb;
++----------------------+--------------+------+-----+---------+-------+
+| Field                | Type         | Null | Key | Default | Extra |
++----------------------+--------------+------+-----+---------+-------+
+| Budget               | int          | YES  |     | NULL    |       |
+| genres               | varchar(100) | YES  |     | NULL    |       |
+| homepage             | varchar(100) | YES  |     | NULL    |       |
+| id                   | int          | YES  |     | NULL    |       |
+| keywords             | varchar(100) | YES  |     | NULL    |       |
+| original_language    | varchar(2)   | YES  |     | NULL    |       |
+| original_title       | varchar(100) | YES  |     | NULL    |       |
+| overview             | varchar(100) | YES  |     | NULL    |       |
+| popularity           | decimal(9,6) | YES  |     | NULL    |       |
+| production_companies | varchar(100) | YES  |     | NULL    |       |
+| production_countries | varchar(100) | YES  |     | NULL    |       |
+| release_date         | date         | YES  |     | NULL    |       |
+| revenue              | int          | YES  |     | NULL    |       |
+| runtime              | int          | YES  |     | NULL    |       |
+| spoken_languages     | varchar(100) | YES  |     | NULL    |       |
+| status               | varchar(100) | YES  |     | NULL    |       |
+| tagline              | varchar(100) | YES  |     | NULL    |       |
+| title                | varchar(100) | YES  |     | NULL    |       |
+| vote_average         | decimal(2,1) | YES  |     | NULL    |       |
+| vote_count           | int          | YES  |     | NULL    |       |
++----------------------+--------------+------+-----+---------+-------+
+describe
+````
+
 
 ### Create the Serverless Lambda Function
 ## Thank you
