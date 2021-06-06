@@ -91,7 +91,11 @@ show databases;
 * Create your database table
 ````sql
 Use dennis;
-Create table imdb (Budget int(10), genres varchar(100), homepage varchar(100),	id int(10), keywords varchar(100), original_language varchar(2), original_title varchar(100), overview varchar(100), popularity decimal(9,6), production_companies varchar(100), production_countries varchar(100),  release_date date, revenue int(10), runtime int(3),	spoken_languages  varchar(100), status varchar(100), tagline varchar(100), title varchar(100), vote_average decimal(2,1), vote_count int(10));
+Create table imdb (Budget int(10), genres varchar(100), homepage varchar(100),	id int(10), keywords varchar(100),\
+original_language varchar(2), original_title varchar(100), overview varchar(100), popularity decimal(9,6),\
+production_companies varchar(100), production_countries varchar(100),  release_date date, revenue int(10),\
+runtime int(3),	spoken_languages  varchar(100), status varchar(100), tagline varchar(100), title varchar(100),\
+vote_average decimal(2,1), vote_count int(10));
 describe imdb;
 +----------------------+--------------+------+-----+---------+-------+
 | Field                | Type         | Null | Key | Default | Extra |
