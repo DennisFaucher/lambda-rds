@@ -1,3 +1,4 @@
+![Lambda Select](https://user-images.githubusercontent.com/9034190/120943381-82982780-c6fc-11eb-8506-bf97290f80c8.png)
 # AWS Lambda Serverless RDS MySQL Tutorial
 ![Lambda](https://user-images.githubusercontent.com/9034190/120906888-25807100-c62b-11eb-94fa-686113054719.png)
 
@@ -168,6 +169,7 @@ OK, we have a serverless database, we can connect to it, and we have inserted so
 
 * From the AWS Management Console, select ""All services" and then "Lambda"
 
+![image](https://user-images.githubusercontent.com/9034190/120943398-980d5180-c6fc-11eb-99de-7f9842556bad.png)
 
 
 ## Thank you
