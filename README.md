@@ -18,6 +18,13 @@ I don't actually remember. :smiley: I have been working my way through an AWS ce
 ### Parts List
 
 * An AWS Account. You can create one [here](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html)
+* The mysql-client installed on your computer. On my Mac, I installed with:
+
+````bash
+brew install mysql-client
+````
+
+On Linux, you should be able to install the mysql-client package with your favorite package manager.
 
 ### Create the Serverless RDS Database
 
