@@ -91,11 +91,13 @@ show databases;
 * Create your database table
 ````sql
 Use dennis;
+
 Create table imdb (Budget int(10), genres varchar(100), homepage varchar(100),	id int(10), keywords varchar(100),\
 original_language varchar(2), original_title varchar(100), overview varchar(100), popularity decimal(9,6),\
 production_companies varchar(100), production_countries varchar(100),  release_date date, revenue int(10),\
 runtime int(3),	spoken_languages  varchar(100), status varchar(100), tagline varchar(100), title varchar(100),\
 vote_average decimal(2,1), vote_count int(10));
+
 describe imdb;
 +----------------------+--------------+------+-----+---------+-------+
 | Field                | Type         | Null | Key | Default | Extra |
@@ -125,6 +127,21 @@ describe imdb;
 Two issues I want to point out here:
 1) I should have named my table tmdb not imdb but I didn't :smile:
 2) A few of these columns should actually be defined as JSON not varchar(100), but my import would not work when the columns were defined as JSON. Column type can be changed after import.
+
+* Import your data
+
+````bash
+(From your mysql-client to enable data import)
+GRANT SESSION_VARIABLES_ADMIN ON *.* TO 'admin'@'%';
+
+(From your bash prompt)
+mysqlimport --local --compress --user=admin --password=super-secret-password --host=hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com --fields-terminated-by='^v^i' tmdb_5000_movies.txt
+
+````
+
+Two more issues I want to point out here:
+1) I usually use the "LOAD DATA INFILE" syntax from the mysql-client to load data into tables, but I was having all sorts of permission problems. I switched from mysql-client to mysqlimport and had success
+2) I opened tmdb_5000_movies.csv in Excel and saved as tab delimited to tmdb_5000_movies.txt. The commas in some of the movie fields can cause problems with immport, so tab delimited was safer. You'll see the ^v^i in the mysqlimport syntax above. To insert a TAB in your command line, press [CTRL]V then [CTRL]I.
 
 ### Create the Serverless Lambda Function
 ## Thank you
