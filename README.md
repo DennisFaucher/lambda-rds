@@ -67,7 +67,12 @@ For my testing I grabbed a [TMDB movie CSV](https://www.kaggle.com/tmdb/tmdb-mov
 
 ![Spreadsheet](https://user-images.githubusercontent.com/9034190/120908599-cd9d3680-c639-11eb-998c-b912ccf9c56f.png)
 
+OK, now that we have some data to populate our RDS database with, lets create a database, create a table and import the data
 
+* Connect to your RDS database instance with your mysql-client
+````bash
+mysql -h hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com -P 3306 -u admin -p (use your FQDN)
+````
 
 
 
