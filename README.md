@@ -163,4 +163,11 @@ Three more issues I want to point out here:
 3) Make sure you delete the column header row from your input file before import
 
 ### Create the Serverless Lambda Function
+
+OK, we have a serverless database, we can connect to it, and we have inserted some data. Let's create a serverless database search function.
+
+* From the AWS Management Console, select ""All services" and then "Lambda"
+
+
+
 ## Thank you
