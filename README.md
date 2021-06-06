@@ -135,13 +135,32 @@ Two issues I want to point out here:
 GRANT SESSION_VARIABLES_ADMIN ON *.* TO 'admin'@'%';
 
 (From your bash prompt)
-mysqlimport --local --compress --user=admin --password=super-secret-password --host=hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com --fields-terminated-by='^v^i' tmdb_5000_movies.txt
+mysqlimport --local --compress --user=admin --password=super-secret-password --host=hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com\
+--fields-terminated-by='^v^i' tmdb_5000_movies.txt
+
+(From your mysql-client)
+ select title, vote_average from imdb limit 10;
++------------------------------------------+--------------+
+| title                                    | vote_average |
++------------------------------------------+--------------+
+| Avatar                                   |          7.2 |
+| Pirates of the Caribbean: At World's End |          6.9 |
+| Spectre                                  |          6.3 |
+| The Dark Knight Rises                    |          7.6 |
+| John Carter                              |          6.1 |
+| Spider-Man 3                             |          5.9 |
+| Tangled                                  |          7.4 |
+| Avengers: Age of Ultron                  |          7.3 |
+| Harry Potter and the Half-Blood Prince   |          7.4 |
+| Batman v Superman: Dawn of Justice       |          5.7 |
++------------------------------------------+--------------+
 
 ````
 
-Two more issues I want to point out here:
+Three more issues I want to point out here:
 1) I usually use the "LOAD DATA INFILE" syntax from the mysql-client to load data into tables, but I was having all sorts of permission problems. I switched from mysql-client to mysqlimport and had success
 2) I opened tmdb_5000_movies.csv in Excel and saved as tab delimited to tmdb_5000_movies.txt. The commas in some of the movie fields can cause problems with immport, so tab delimited was safer. You'll see the ^v^i in the mysqlimport syntax above. To insert a TAB in your command line, press [CTRL]V then [CTRL]I.
+3) Make sure you delete the column header row from your input file before import
 
 ### Create the Serverless Lambda Function
 ## Thank you
