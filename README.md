@@ -462,6 +462,9 @@ Now we can upload YayLambda.zip to AWS Lambda
 
 ![image](https://user-images.githubusercontent.com/9034190/121270536-e9017f00-c88f-11eb-8567-b418b0bdea4b.png)
 
+We now have our starter code and all the libraries we need in our Lmabda function.
+
+![image](https://user-images.githubusercontent.com/9034190/121270743-472e6200-c890-11eb-89e5-c4c426285def.png)
 
 
 
