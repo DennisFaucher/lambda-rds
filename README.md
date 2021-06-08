@@ -240,4 +240,35 @@ drwxr-xr-x 2 dennis dennis 4096 Jun  8 09:01 mysql_connector-2.2.9-py3.9.egg-inf
 drwxr-xr-x 5 dennis dennis 4096 Jun  8 09:01 mysqlx
 ````
 
+I hacked lambda_function.py a little so that it would run locally and I could test my database connection and the sql-connector library. Success! Let;s do the rest of the edits right in the Lambda web page.
+
+````bash
+$ cp lambda_function.py local_function.py
+$ vi local_function.py
+$ cat local_function.py
+import json
+import mysql.connector
+
+#def lambda_handler(event, context):
+def main():
+    # TODO implement
+    conn = mysql.connector.connect(user='admin', password='SuperSecretPassword',
+                                  host='hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com',database='dennis')
+
+    if conn:
+        print ("Connected Successfully")
+    else:
+        print ("Connection Not Established")
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+
+if __name__ == "__main__":
+    main()
+    
+$ python local_function.py
+Connected Successfully
+
 ## Thank you
