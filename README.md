@@ -462,9 +462,26 @@ Now we can upload YayLambda.zip to AWS Lambda
 
 ![image](https://user-images.githubusercontent.com/9034190/121270536-e9017f00-c88f-11eb-8567-b418b0bdea4b.png)
 
-We now have our starter code and all the libraries we need in our Lmabda function.
+We now have our starter code and all the libraries we need in our Lambda function.
 
 ![image](https://user-images.githubusercontent.com/9034190/121270743-472e6200-c890-11eb-89e5-c4c426285def.png)
+
+#### Test our start code with an event
+
+Lambda functions are triggered by events. We can create a test event and see if our code is working in AWS.
+
+* Select Test and then Configure test event
+
+![image](https://user-images.githubusercontent.com/9034190/121271150-100c8080-c891-11eb-89c9-0b347462b0af.png)
+
+* Use the defaults, give your event a name and select the Create button
+
+![image](https://user-images.githubusercontent.com/9034190/121271966-d177c580-c892-11eb-92e0-e802bc3be11c.png)
+
+Now before we test our code, I want to point out something important I learned through trial and error (and error). There is a Runtime settings section below your code that specifies the name of the file and the name of the function that will be run. Make sure this matches you code.
+
+![image](https://user-images.githubusercontent.com/9034190/121272101-1e5b9c00-c893-11eb-8b4e-0c074bcaffa2.png)
+
 
 
 
