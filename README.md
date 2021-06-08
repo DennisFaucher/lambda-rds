@@ -220,14 +220,22 @@ def lambda_handler(event, context):
     }
 ````
 
-The json python library is standard in Lambda but the mysql library is not. We need to install the mysql library into our code directory for later upload to Lambda. I learned how to do that from the same [blog post](https://kuharan.medium.com/mysql-aws-lambda-webapp-521b16458b93) referenced above. We do that with this command:
+The json python library is standard in Lambda but the mysql library is not. We need to install the mysql library into our code directory for later upload to Lambda. I learned how to do that from the same [blog post](https://kuharan.medium.com/mysql-aws-lambda-webapp-521b16458b93) referenced above (but I replaced pymysql with mysql-connector). We do that with this command:
 
 ````bash
-pip install pymysql -t .
+pip install mysql-connector -t .
 [Output]
-Collecting pymysql
-  Using cached PyMySQL-1.0.2-py3-none-any.whl (43 kB)
-Installing collected packages: pymysql
-Successfully installed pymysql-1.0.2
-````
+Collecting mysql-connector
+  Using cached mysql-connector-2.2.9.tar.gz (11.9 MB)
+Using legacy 'setup.py install' for mysql-connector, since package 'wheel' is not installed.
+Installing collected packages: mysql-connector
+    Running setup.py install for mysql-connector ... done
+Successfully installed mysql-connector-2.2.9
+
+ ls -l
+total 16
+-rw-r--r-- 1 dennis dennis  483 Jun  8 08:48 lambda_function.py
+drwxr-xr-x 4 dennis dennis 4096 Jun  8 09:01 mysql
+drwxr-xr-x 2 dennis dennis 4096 Jun  8 09:01 mysql_connector-2.2.9-py3.9.egg-info
+drwxr-xr-x 5 dennis dennis 4096 Jun  8 09:01 mysqlx````
 ## Thank you
