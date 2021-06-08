@@ -482,6 +482,9 @@ Now before we test our code, I want to point out something important I learned t
 
 ![image](https://user-images.githubusercontent.com/9034190/121272101-1e5b9c00-c893-11eb-8b4e-0c074bcaffa2.png)
 
+To test our code with our new test event just select the Test button. You will see the JSON output of lambda_function.py in the Execution results tab
+
+![image](https://user-images.githubusercontent.com/9034190/121272371-c8d3bf00-c893-11eb-8eb5-9aa4988823ea.png)
 
 
 
