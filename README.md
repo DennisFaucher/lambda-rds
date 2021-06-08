@@ -198,7 +198,7 @@ cd YayLambda
 vi lambda_funtion.py (paste sample code in)
 ````
 
-Now, let's add some code to test the connection to our RDS database
+Now, let's add some code to test the connection to our RDS database. I learned this code from this blog post
 ````python
 🕙 Tue 06-08 08:48 AM ❯ cat lambda_function.py
 import json
@@ -220,4 +220,14 @@ def lambda_handler(event, context):
     }
 ````
 
+The json python library is standard in Lambda but the mysql library is not. We need to install the mysql library into our code directory for later upload to Lambda. I learned how to do that from the same [blog post](https://kuharan.medium.com/mysql-aws-lambda-webapp-521b16458b93) referenced above. We do that with this command:
+
+````bash
+pip install pymysql -t .
+[Output]
+Collecting pymysql
+  Using cached PyMySQL-1.0.2-py3-none-any.whl (43 kB)
+Installing collected packages: pymysql
+Successfully installed pymysql-1.0.2
+````
 ## Thank you
