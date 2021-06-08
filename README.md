@@ -181,9 +181,43 @@ OK, we have a serverless database, we can connect to it, and we have inserted so
 
 (I no longer program for a living, so I did some testing with a Javascript tutorial but was finally successful using this Python [tutorial](https://kuharan.medium.com/mysql-aws-lambda-webapp-521b16458b93) as a base)
 
-Once your basic function has been created, you will have some sample Python code created for you. DOuble click "lambda_function.py" to see that sample code.
+Once your basic function has been created, you will have some sample Python code created for you. Double click "lambda_function.py" to see that sample code.
 
 ![image](https://user-images.githubusercontent.com/9034190/120944011-51215b00-c700-11eb-8116-d0337447ec3c.png)
 
+Here's the thing about writing your code in the Lambda editor - this is the best place to test your final code. The one caveat is that any external language libraries have to be uploaded as a ZIP file. You cannot install them directly here as you could say in an online Jupyter notebook. There is some value in testing your code locally on your personal machine, instaling externally libraries and then uploading to Lambda. I'll use that method here.
+
+#### Test You Code on Your Local Machine
+
+We can start with the lambda_function.py that AWS was nice enough to create for us and build from there.  Create a directory on your local machine and copy and paste the code from lambda.py to your own lambda.py
+
+````bash
+cd Documents
+mkdir YayLambda
+cd YayLambda
+vi lambda_funtion.py (paste sample code in)
+````
+
+Now, let's add some code to test the connection to our RDS database
+````python
+🕙 Tue 06-08 08:48 AM ❯ cat lambda_function.py
+import json
+import mysql.connector
+
+def lambda_handler(event, context):
+    # TODO implement
+    conn = mysql.connector.connect(user='admin', password='SuperSecretPassword',
+                                  host='hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com',database='dennis')
+
+    if conn:
+        print ("Connected Successfully")
+    else:
+        print ("Connection Not Established")
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+````
 
 ## Thank you
