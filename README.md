@@ -237,5 +237,7 @@ total 16
 -rw-r--r-- 1 dennis dennis  483 Jun  8 08:48 lambda_function.py
 drwxr-xr-x 4 dennis dennis 4096 Jun  8 09:01 mysql
 drwxr-xr-x 2 dennis dennis 4096 Jun  8 09:01 mysql_connector-2.2.9-py3.9.egg-info
-drwxr-xr-x 5 dennis dennis 4096 Jun  8 09:01 mysqlx````
+drwxr-xr-x 5 dennis dennis 4096 Jun  8 09:01 mysqlx
+````
+
 ## Thank you
