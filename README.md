@@ -1,4 +1,4 @@
-![Lambda Select](https://user-images.githubusercontent.com/9034190/120943381-82982780-c6fc-11eb-8506-bf97290f80c8.png)
+ret![Lambda Select](https://user-images.githubusercontent.com/9034190/120943381-82982780-c6fc-11eb-8506-bf97290f80c8.png)
 # AWS Lambda Serverless RDS MySQL Tutorial
 ![Lambda](https://user-images.githubusercontent.com/9034190/120906888-25807100-c62b-11eb-94fa-686113054719.png)
 
@@ -518,16 +518,17 @@ import mysql.connector  # Import the MySQL Library we uploaded
 import json             # For JSON handling. DO not need to upload this library
 import re               # To prevent SQL Injection my cleaning the input variable
 
-def lambda_handler(event, context):
-    conn = mysql.connector.connect(user='admin', password='Beanie01!',
-                                  host='hello-mysql.c1kyvjbd9tpi.us-east-1.rds.amazonaws.com',database='dennis')
+def lambda_handler(event, context):              # This is important and Lambda is looking for "lambda_handler"
+                                                 # The next line connects to our RDS MySQL database
+    conn = mysql.connector.connect(user='admin', password='SuperSecretPassword',
+                                  host='hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com',database='dennis')
     
-    if conn:
+    if conn:                                     # Check for a successful database connection
         print ("Connected Successfully")
     else:
         print ("Connection Not Established")
     
-    class create_dict(dict): 
+    class create_dict(dict):                     # Create a structure to hold the results of our SQL query. There may be a better way.
       
         # __init__ function 
         def __init__(self): 
@@ -537,20 +538,19 @@ def lambda_handler(event, context):
         def add(self, key, value): 
             self[key] = value
     
-    mydict = create_dict()
-    movie_name = event['queryStringParameters']['movie_name']
-    clean_movie = re.sub('[^A-Za-z0-9 ]+', '', movie_name)
-    print("movie_name: ",movie_name, " clean_movie: ", clean_movie)
+    mydict = create_dict()                       # Initialize our dict structure
+    movie_name = event['queryStringParameters']['movie_name']        # Get the movie_name string passed in the URL as ?movie_name="Name"
+    clean_movie = re.sub('[^A-Za-z0-9 ]+', '', movie_name)           # Use the re library to strip nasty SQL Inject characters 
+                                                                     # The next line is our SQL SELECT statement using the passed variable
     select_movie = "select title,popularity,vote_average from dennis.imdb where title like \"" + clean_movie + "%\"  order by popularity desc"
     cursor = conn.cursor()
-    print(select_movie)
-    cursor.execute(select_movie)
-    result = cursor.fetchall()
+    cursor.execute(select_movie)                                     # Send the SELECT statement
+    result = cursor.fetchall()                                       # Get the results
     
-    for row in result:
+    for row in result:                                               # Loop through the rows returned, adding them to a python structure
         mydict.add(row[0],({"popularity":str(row[1]),"vote_average":str(row[2])}))
     
-    movie_json = json.dumps(mydict, indent=2, sort_keys=True)
+    movie_json = json.dumps(mydict, indent=2, sort_keys=True)        # Convert python object to JSON string 
     
     return movie_json
 
