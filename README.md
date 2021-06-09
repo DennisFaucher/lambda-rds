@@ -42,7 +42,7 @@ OK, let's create a free serverless database. Login to your AWS Management [Conso
 
 ![Create DB 1](https://user-images.githubusercontent.com/9034190/120907732-e6095300-c631-11eb-855e-ff8aa75741a8.png)
 
-* Give your database instance a name, create an admin password and select the Create database button
+* Give your database instance a name, create an admin password and select the "Create database" button
 
 ![Create DB 2](https://user-images.githubusercontent.com/9034190/120907754-1d77ff80-c632-11eb-9506-d19b09996696.png)
 
@@ -61,7 +61,7 @@ Now, when you select the name of your database instance in the Databases screen,
 
 #### Populate the Database Instance
 
-For my testing I grabbed a [TMDB movie CSV](https://www.kaggle.com/tmdb/tmdb-movie-metadata) from Kaggle specifically, the "tmdb_5000_movies.csv" file. You can use any comma separated or tab separated file to populate your database (You need a free Kaggle account in order to download files).
+For my testing I grabbed a [TMDB movie CSV](https://www.kaggle.com/tmdb/tmdb-movie-metadata) from Kaggle specifically the "tmdb_5000_movies.csv" file. You can use any comma separated or tab separated file to populate your database (You need a free Kaggle account in order to download files).
 
 ![tmdb](https://user-images.githubusercontent.com/9034190/120908357-7a29e900-c637-11eb-8256-f0f9050f08bd.png)
 
@@ -157,10 +157,10 @@ mysqlimport --local --compress --user=admin --password=super-secret-password --h
 
 ````
 
-Three more issues I want to point out here:
+Three more items I want to point out here:
 1) I usually use the "LOAD DATA INFILE" syntax from the mysql-client to load data into tables, but I was having all sorts of permission problems. I switched from mysql-client to mysqlimport and had success
 2) I opened tmdb_5000_movies.csv in Excel and saved as tab delimited to tmdb_5000_movies.txt. The commas in some of the movie fields can cause problems with immport, so tab delimited was safer. You'll see the ^v^i in the mysqlimport syntax above. To insert a TAB in your command line, press [CTRL]V then [CTRL]I.
-3) Make sure you delete the column header row from your input file before import
+3) Make sure you delete the column header row from your input file before import or else your headers will become a row in the database
 
 ### Create the Serverless Lambda Function
 
@@ -184,11 +184,11 @@ Once your basic function has been created, you will have some sample Python code
 
 ![image](https://user-images.githubusercontent.com/9034190/120944011-51215b00-c700-11eb-8116-d0337447ec3c.png)
 
-Here's the thing about writing your code in the Lambda editor - this is the best place to test your final code. The one caveat is that any external language libraries have to be uploaded as a ZIP file. You cannot install them directly here as you could say in an online Jupyter notebook. There is some value in testing your code locally on your personal machine, instaling externally libraries and then uploading to Lambda. I'll use that method here.
+Here's the thing about writing your code in the Lambda editor - the Lambda editor is the best place to test your final code. The one caveat is that any external language libraries have to be uploaded as a ZIP file. You cannot install them directly in the Lambda editor as you could say in an online Jupyter notebook. There is some value in testing your code locally on your personal machine, installing externally libraries and then uploading the entire folder to Lambda. I'll use that method here.
 
 #### Test You Code on Your Local Machine
 
-We can start with the lambda_function.py that AWS was nice enough to create for us and build from there.  Create a directory on your local machine and copy and paste the code from lambda.py to your own lambda.py
+We can start with the lambda_function.py that AWS was nice enough to create for us and build from there.  Create a directory on your local machine and copy and paste the code from lambda_function.py to your own lambda_function.py
 
 ````bash
 cd Documents
@@ -197,9 +197,9 @@ cd YayLambda
 vi lambda_funtion.py (paste sample code in)
 ````
 
-Now, let's add some code to test the connection to our RDS database. I learned this code from this blog post
+Now, let's add some code to test the connection to our RDS database. I learned this code from [this blog post](https://www.etutorialspoint.com/index.php/295-how-to-convert-mysql-query-result-to-json-in-python)
 ````python
-🕙 Tue 06-08 08:48 AM ❯ cat lambda_function.py
+$ cat lambda_function.py
 import json
 import mysql.connector
 
@@ -239,7 +239,7 @@ drwxr-xr-x 2 dennis dennis 4096 Jun  8 09:01 mysql_connector-2.2.9-py3.9.egg-inf
 drwxr-xr-x 5 dennis dennis 4096 Jun  8 09:01 mysqlx
 ````
 
-I hacked lambda_function.py a little so that it would run locally and I could test my database connection and the sql-connector library. Success! Let;s do the rest of the edits right in the Lambda web page.
+I hacked lambda_function.py a little so that it would run locally and I could test my database connection and the sql-connector library. 
 
 ````bash
 $ cp lambda_function.py local_function.py
@@ -270,6 +270,8 @@ if __name__ == "__main__":
 $ python local_function.py
 Connected Successfully
 ````
+
+Success! Let's do the rest of the edits right in the Lambda web page.
 
 #### Let's Upload This Mess to Lambda
 
@@ -451,11 +453,11 @@ zip -r YayLambda.zip *
 
 Now we can upload YayLambda.zip to AWS Lambda
 
-* From our Lambda Code source windows, select Upload from > .zip file
+* From our Lambda Code source window, select "Upload from" > .zip file
 
 ![image](https://user-images.githubusercontent.com/9034190/121270126-1ac61600-c88f-11eb-9a2a-c72aa4ef9c23.png)
 
-* Select the Upload button, choose your ZIP file and then select the Save button
+* Select the "Upload" button, choose your ZIP file and then select the "Save" button
 
 ![image](https://user-images.githubusercontent.com/9034190/121270255-58c33a00-c88f-11eb-8e4f-ef8843a30b73.png)
 
@@ -477,17 +479,17 @@ Lambda functions are triggered by events. We can create a test event and see if 
 
 ![image](https://user-images.githubusercontent.com/9034190/121271966-d177c580-c892-11eb-92e0-e802bc3be11c.png)
 
-Now before we test our code, I want to point out something important I learned through trial and error (and error). There is a Runtime settings section below your code that specifies the name of the file and the name of the function that will be run. Make sure this matches you code.
+Now before we test our code, I want to point out something important I learned through trial and error (and error). There is a Runtime settings section below your code that specifies the name of the file and the name of the function that will be run. Make sure this matches your code.
 
 ![image](https://user-images.githubusercontent.com/9034190/121272101-1e5b9c00-c893-11eb-8b4e-0c074bcaffa2.png)
 
-To test our code with our new test event just select the "Test" button. You will see the JSON output of lambda_function.py in the Execution results tab
+To test our code with our new test event, just select the "Test" button. You will see the JSON output of lambda_function.py in the Execution results tab
 
 ![image](https://user-images.githubusercontent.com/9034190/121272371-c8d3bf00-c893-11eb-8eb5-9aa4988823ea.png)
 
 #### Test Our Code on the Web
 
-We haven't added our beautiful SQL statements yet to our code, but being able to call this function from a web page is so cool, let's do that now and then come back and add the SQL statements.
+We haven't added beautiful SQL statements to our code yet, but being able to call this function from a web page is so cool, let's do that now and then come back and add the SQL statements.
 
 * From Function overview select the "Add trigger" button
 
@@ -510,14 +512,14 @@ If we visit that public URL, something should happen
 
 Now that we know that our Lambda function can be triggered by visiting a web page, let's add some code to accept a value in the URL and search for that value in our database.
 
-Here is the code that worked for me. I will provide explanation as comments in the code listing. I have also uploaded my final code to this repo. Be kind, I no longer code for a living :smile: 
+Here is the code that worked for me. I will provide explanation as comments in the code listing. I have also uploaded my final code to this repo. (Be kind, I no longer code for a living :smile:)
 
 ````Python
 import mysql.connector  # Import the MySQL Library we uploaded
-import json             # For JSON handling. DO not need to upload this library
-import re               # To prevent SQL Injection my cleaning the input variable
+import json             # For JSON handling. Do not need to upload this library
+import re               # To prevent SQL Injection my cleaning the input variable. Do not need to upload this library.
 
-def lambda_handler(event, context):              # This is important and Lambda is looking for "lambda_handler"
+def lambda_handler(event, context):              # This is important as Lambda is looking for "lambda_handler"
                                                  # The next line connects to our RDS MySQL database
     conn = mysql.connector.connect(user='admin', password='SuperSecretPassword',
                                   host='hello-mysql.c9kyvjbd9tpz.us-east-1.rds.amazonaws.com',database='dennis')
@@ -537,7 +539,7 @@ def lambda_handler(event, context):              # This is important and Lambda 
         def add(self, key, value): 
             self[key] = value
     
-    mydict = create_dict()                       # Initialize our dict structure
+    mydict = create_dict()                                           # Initialize our dict structure
     movie_name = event['queryStringParameters']['movie_name']        # Get the movie_name string passed in the URL as ?movie_name="Name"
     clean_movie = re.sub('[^A-Za-z0-9 ]+', '', movie_name)           # Use the re library to strip nasty SQL Inject characters 
                                                                      # The next line is our SQL SELECT statement using the passed variable
@@ -549,17 +551,17 @@ def lambda_handler(event, context):              # This is important and Lambda 
     for row in result:                                               # Loop through the rows returned, adding them to a python structure
         mydict.add(row[0],({"popularity":str(row[1]),"vote_average":str(row[2])}))
     
-    movie_json = json.dumps(mydict, indent=2)        # Convert python object to JSON string, indents the JSON 
+    movie_json = json.dumps(mydict, indent=2)                        # Convert python object to JSON string, indents the JSON 
     
     return movie_json
 
 ````
 
-Now, when we append something like ?movie_name="Star" to our Web API URL, we get a list of movies starting with "Star" sortted by popularity
+Now, when we append something like ?movie_name="Star" to our Web API URL, we get a list of movies starting with "Star" sorted by popularity
 
 ![image](https://user-images.githubusercontent.com/9034190/121428837-40f9bd80-c944-11eb-8ccb-0221cfc81ca0.png)
 
 
 ## Thank you
 
-Thank you for taking the time to reasd this _long_ post. I could not find any other blog posts that did exactly this or were written in a way that I could understand. I hope you found this helpful, educational, and easy to understand. I welcome your feedback.
+Thank you for taking the time to read this _long_ post. I could not find any other blog posts that did exactly this or were written in a way that I could understand. I hope you found this helpful, educational, and easy to understand. I welcome your feedback.
