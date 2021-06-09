@@ -550,11 +550,17 @@ def lambda_handler(event, context):              # This is important and Lambda 
     for row in result:                                               # Loop through the rows returned, adding them to a python structure
         mydict.add(row[0],({"popularity":str(row[1]),"vote_average":str(row[2])}))
     
-    movie_json = json.dumps(mydict, indent=2, sort_keys=True)        # Convert python object to JSON string 
+    movie_json = json.dumps(mydict, indent=2)        # Convert python object to JSON string, indents the JSON 
     
     return movie_json
 
 ````
 
+Now, when we append something like ?movie_name="Star" to our Web API URL, we get a list of movies starting with "Star" sortted by popularity
+
+![image](https://user-images.githubusercontent.com/9034190/121428837-40f9bd80-c944-11eb-8ccb-0221cfc81ca0.png)
+
 
 ## Thank you
+
+Thank you for taking the time to reasd this _long_ post. I could not find any other blog posts that did exactly this or were written in a way that I could understand. I hope you found this helpful, educational, and easy to understand. I welcome your feedback.
