@@ -1,4 +1,3 @@
-ret![Lambda Select](https://user-images.githubusercontent.com/9034190/120943381-82982780-c6fc-11eb-8506-bf97290f80c8.png)
 # AWS Lambda Serverless RDS MySQL Tutorial
 ![Lambda](https://user-images.githubusercontent.com/9034190/120906888-25807100-c62b-11eb-94fa-686113054719.png)
 
