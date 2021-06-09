@@ -178,7 +178,7 @@ OK, we have a serverless database, we can connect to it, and we have inserted so
 
 ![image](https://user-images.githubusercontent.com/9034190/120943813-3c909300-c6ff-11eb-91da-b2ec13ce19d1.png)
 
-(I no longer program for a living, so I did some testing with a Javascript tutorial but was finally successful using this Python [tutorial](https://kuharan.medium.com/mysql-aws-lambda-webapp-521b16458b93) as a base)
+(I did some testing with a Javascript tutorial but was finally successful using this Python [tutorial](https://kuharan.medium.com/mysql-aws-lambda-webapp-521b16458b93) as a base)
 
 Once your basic function has been created, you will have some sample Python code created for you. Double click "lambda_function.py" to see that sample code.
 
