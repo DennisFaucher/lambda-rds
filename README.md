@@ -499,5 +499,18 @@ We haven't added our beautiful SQL statements yet to our code, but being able to
 
 ![image](https://user-images.githubusercontent.com/9034190/121273233-c5413780-c895-11eb-80a0-ffd4cd1443b5.png)
 
+An API gateway will be created with a public URL
+
+![image](https://user-images.githubusercontent.com/9034190/121422347-24a65280-c93d-11eb-81a2-24e59f4625ab.png)
+
+If we visit that public URL, something should happen
+
+![image](https://user-images.githubusercontent.com/9034190/121422597-646d3a00-c93d-11eb-9bbc-4f7a43529dd3.png)
+
+#### Add a Custom SQL Select Statement to our Code
+
+Now that we know that our Lambda function can be triggered by visiting a web page, let's add some code to accept a value in the URL and search for that value in our database.
+
+
 
 ## Thank you
