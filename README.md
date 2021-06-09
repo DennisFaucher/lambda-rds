@@ -482,10 +482,22 @@ Now before we test our code, I want to point out something important I learned t
 
 ![image](https://user-images.githubusercontent.com/9034190/121272101-1e5b9c00-c893-11eb-8b4e-0c074bcaffa2.png)
 
-To test our code with our new test event just select the Test button. You will see the JSON output of lambda_function.py in the Execution results tab
+To test our code with our new test event just select the "Test" button. You will see the JSON output of lambda_function.py in the Execution results tab
 
 ![image](https://user-images.githubusercontent.com/9034190/121272371-c8d3bf00-c893-11eb-8eb5-9aa4988823ea.png)
 
+#### Test Our Code on the Web
+
+We haven't added our beautiful SQL statements yet to our code, but being able to call this function from a web page is so cool, let's do that now and then come back and add the SQL statements.
+
+* From Function overview select the "Add trigger" button
+
+![image](https://user-images.githubusercontent.com/9034190/121273052-57950b80-c895-11eb-8dd0-575d21f095c2.png)
+
+
+* Select "API Gateway", "Create an API", Open Security, and then the "Add" buttion.
+
+![image](https://user-images.githubusercontent.com/9034190/121273233-c5413780-c895-11eb-80a0-ffd4cd1443b5.png)
 
 
 ## Thank you
