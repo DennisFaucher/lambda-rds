@@ -511,6 +511,50 @@ If we visit that public URL, something should happen
 
 Now that we know that our Lambda function can be triggered by visiting a web page, let's add some code to accept a value in the URL and search for that value in our database.
 
+Here is the code that worked for me. I will provide explanation as comments in the code listing. I have also uploaded my final code to this repo. Be kind, I no longer code for a living :smile: 
+
+````Python
+import mysql.connector  # Import the MySQL Library we uploaded
+import json             # For JSON handling. DO not need to upload this library
+import re               # To prevent SQL Injection my cleaning the input variable
+
+def lambda_handler(event, context):
+    conn = mysql.connector.connect(user='admin', password='Beanie01!',
+                                  host='hello-mysql.c1kyvjbd9tpi.us-east-1.rds.amazonaws.com',database='dennis')
+    
+    if conn:
+        print ("Connected Successfully")
+    else:
+        print ("Connection Not Established")
+    
+    class create_dict(dict): 
+      
+        # __init__ function 
+        def __init__(self): 
+            self = dict() 
+              
+        # Function to add key:value 
+        def add(self, key, value): 
+            self[key] = value
+    
+    mydict = create_dict()
+    movie_name = event['queryStringParameters']['movie_name']
+    clean_movie = re.sub('[^A-Za-z0-9 ]+', '', movie_name)
+    print("movie_name: ",movie_name, " clean_movie: ", clean_movie)
+    select_movie = "select title,popularity,vote_average from dennis.imdb where title like \"" + clean_movie + "%\"  order by popularity desc"
+    cursor = conn.cursor()
+    print(select_movie)
+    cursor.execute(select_movie)
+    result = cursor.fetchall()
+    
+    for row in result:
+        mydict.add(row[0],({"popularity":str(row[1]),"vote_average":str(row[2])}))
+    
+    movie_json = json.dumps(mydict, indent=2, sort_keys=True)
+    
+    return movie_json
+
+````
 
 
 ## Thank you
